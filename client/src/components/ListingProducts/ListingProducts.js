@@ -15,7 +15,7 @@ class ListUrls extends Component {
     }
 
     getData = (pageNo) =>{
-        let URL = `http://localhost:3000/api/v1/getproducts?pageNo=${pageNo}`;
+        let URL = `http://localhost:3001/api/v1/getproducts?pageNo=${pageNo}`;
 
         console.log("URL is as --- ", URL);
 
