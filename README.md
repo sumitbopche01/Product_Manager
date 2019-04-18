@@ -1,4 +1,4 @@
-# Product Manager
+# Products Manager
 
 ## Getting Started
 
