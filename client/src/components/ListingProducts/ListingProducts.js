@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import TableList from './table'
 import  classes from './ListingProducts.module.css';
-
+import Pagination from '../Pagination/Pagination';
 
 class ListUrls extends Component {
 
@@ -12,6 +12,9 @@ class ListUrls extends Component {
         this.state = {
             productsList:[]
         }
+
+        // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+        this.getData = this.getData.bind(this);
     }
 
     getData = (pageNo) =>{
@@ -32,7 +35,7 @@ class ListUrls extends Component {
 
     componentDidMount(pageNo = null) {
         if(!pageNo){
-            pageNo = 0;
+            pageNo = 1;
         }
         this.getData(pageNo);
     }
@@ -51,9 +54,13 @@ class ListUrls extends Component {
         })
         // console.log("list is as --- ")
         return(
-            <div className={classes.productsTable}>
-                <TableList list={list}> </TableList>
+            <div>
+                
+                <div className={classes.productsTable}>
+                    <TableList list={list} getData={this.getData}> </TableList>
+                </div>
             </div>
+            
         )
     }
 }

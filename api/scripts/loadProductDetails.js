@@ -2,7 +2,7 @@ const request = require('request-promise');
 const config = require('../config/dev_sysconf.json');
 
 let products, productKeys;
-let LIMIT = config.LIMIT;
+let PAGESIZE = config.PAGESIZE;
 
 async function loadProductsDetails() {
     let options = {
@@ -30,15 +30,16 @@ async function productDetailsWithPagination(pageNo) {
     console.log("pageNo isa s -- ", pageNo);
     let productList = [];
 
-    let startIndex = pageNo * LIMIT ;
-    if (productKeys.length - 1 - startIndex > LIMIT) {
-        LIMIT = startIndex + LIMIT;
+    let startIndex = (pageNo - 1) * PAGESIZE ;
+    let limit;
+    if (productKeys.length - 1 - startIndex > PAGESIZE) {
+        limit = startIndex + PAGESIZE;
     } else {
-        console.log("else is as ---- ", LIMIT);
-        LIMIT = productKeys.length;
+        console.log("else is as ---- ", limit);
+        limit = productKeys.length;
     }
-    console.log("startindec is as ", startIndex, " limit set is as -- ", LIMIT);
-    for (let i = startIndex; i < LIMIT; i++) {
+    console.log("startindec is as ", startIndex, " limit set is as -- ", limit);
+    for (let i = startIndex; i < limit; i++) {
         let key = productKeys[i];
         products[key].productId = key;
         productList.push(products[key]);

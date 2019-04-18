@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 
 import classes from './ListingProducts.module.css';
+import Pagination from '../Pagination/Pagination';
 
 class TableList extends Component {
     render(){
@@ -8,6 +9,7 @@ class TableList extends Component {
             <div>
                 <div className ={classes.table}> 
                         <h3 >Products List</h3>      
+                        <Pagination getData={this.props.getData}/>
                         <table>
                             <tbody>
                                 <tr>
